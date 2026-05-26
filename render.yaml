@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: bfhl-api
+    runtime: docker
+    plan: free
+    buildCommand: ./mvnw -q -DskipTests package || mvn -q -DskipTests package
+    startCommand: java -Dserver.port=$PORT -jar target/bfhl-api-1.0.0.jar
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: BFHL_STUDENT_FIRST_NAME
+        sync: false
+      - key: BFHL_STUDENT_LAST_NAME
+        sync: false
+      - key: BFHL_STUDENT_EMAIL
+        sync: false
+      - key: BFHL_STUDENT_ROLL_NUMBER
+        sync: false
